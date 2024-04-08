@@ -14,3 +14,7 @@ Sovelluksen ominaisuuksia:
 - Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 Kyseessä on ensimmäinen kurssilla valmiiksi annetuista esimerkeistä.
+
+Välipalautus 2:
+
+Tehty sovelluksen kirjautumis- ja rekisteröintisivun frontend.
