@@ -178,6 +178,19 @@ header {
    margin-right: 3px;
 }
 
+.role-selector {
+   color: #000;
+   font-weight: 500;
+   margin: -15px 0 15px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.role-selector label input {
+   accent-color: #000;
+   margin-right: 3px; 
+}
+
 .btn {
    width: 100%;
    height: 45px;
