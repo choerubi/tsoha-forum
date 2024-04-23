@@ -17,31 +17,51 @@ Kyseessä on ensimmäinen kurssilla valmiiksi annetuista esimerkeistä.
 
 ## Ohjeet sovelluksen testaamiseen
 
-1. Kloonaa repositorio omalle koneellesi.
+1 Kloonaa repositorio omalle koneellesi seuraavasti:
+```
+$ git clone https://github.com/choerubi/tsoha-forum
+```
 
-3. Lisää hakemistoon .env-tiedosto, josta löytyy seuraavat muuttujat:
+2 Lisää hakemiston juureen .env-tiedosto, josta löytyy seuraavat muuttujat:
+```
+SECRET_KEY=<salainen-avain>
+DATABASE_URL=postgresql:///<tietokannan-nimi>
+```
 
-    ```SECRET_KEY=(salainen avain)```
+Voit luoda salaisen avaimen seuraavasti:
+```
+$ python3
+>>> import secrets
+>>> secrets.token_hex(16)
+```
 
-    ```DATABASE_URL=postgresql:///(tietokannan nimi)```
+Tietokannan nimi on käyttäjän tunnus, joka näkyy psql-tulkin rivien alussa, esim:
+```
+choerubi=# \dt
+DATABASE_URL=postgresql:///choerubi
+```
 
-4. Aktivoi Pythonin virtuaaliympäristö hakemistossa seuraavasti:
+3 Aktivoi Pythonin virtuaaliympäristö hakemistossa seuraavasti:
+```
+$ cd tsoha-forum
+$ python3 -m venv venv
+$ source venv/bin/activate
+```
 
-    ```$ python3 -m venv venv```
-
-    ```$ source venv/bin/activate```
-
-7. Asenna tarvittavat kirjastot seuraavalla komennolla:
-
-    ```$ pip install -r requirements.txt```
+4 Asenna tarvittavat kirjastot seuraavalla komennolla:
+```
+(venv) $ pip install -r requirements.txt
+```
    
-10. Määritä tietokanta seuraavalla komennolla:
+5 Määritä tietokanta seuraavalla komennolla:
+```
+(venv) $ psql < schema.sql
+```
 
-    ```$ psql < schema.sql```
-
-12. Käynnistä sovellus seuraavasti:
-
-    ```$ flask run```
+6 Käynnistä sovellus seuraavasti:
+```
+(venv) $ flask run
+```
 
 ## Välipalautukset
 
