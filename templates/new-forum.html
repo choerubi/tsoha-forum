@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Writit 𖹭</title>
+   <link rel="stylesheet" type="text/css" href="/static/forums.css">
+</head>
+
+{% if session.user_id %}
+
+<body class="body-forms">
+    <div class="form-box">
+        <form action="/create-forum" method="POST">
+            Title: <input type="text" name="title" size="30">
+            <br>
+            <input type="submit" value="Create" class="form-btn">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+    </div>
+</body>
+
+{% endif %}

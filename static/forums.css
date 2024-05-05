@@ -1,2 +1,125 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.body-main {
+    margin-top: 140px;
+    margin-left: 60px;
+    background: #ffccff;
+}
+
+.body-forms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: #ffccff;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.nav-search {
+    position: absolute;
+    right: 220px;
+}
+
+.nav-search .icon {
+    position: absolute;
+    right: 408px;
+    top: 6px;
+    font-size: 1.8em;
+    color: #000;
+}
+
+.nav-search .search-btn {
+    width: 135px;
+    height: 40px;
+    background: #000;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.logout .btnLogout-popup {
+    background: transparent;
+    border: 2px solid #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.logout .btnLogout-popup:hover {
+    background: #fff;
+    color: #ffccff;
+}
+
+hr {
+    border-color: #000;
+}
+
+.form-box {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.form-btn {
+    width: 135px;
+    height: 40px;
+    background: #000;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.error-btn {
+    position: absolute;
+    width: 135px;
+    height: 40px;
+    background: #000;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 100px;
+}

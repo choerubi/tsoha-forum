@@ -1,8 +1,8 @@
-import os
 from db import db
 from flask import abort, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from sqlalchemy.sql import text
+import os
 
 def login(email, password):
     sql = text("SELECT id, password, role FROM users WHERE email=:email")
@@ -34,10 +34,13 @@ def register(username, email, password, role):
         return False
     return login(email, password)
 
-def user_id():
+def get_user_id():
     return session.get("user_id", 0)
 
-def check_role(role):
+def get_username():
+    return session.get("username", 0)
+
+def require_role(role):
     if role > session.get("user_role", 0):
         abort(403)
 

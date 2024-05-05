@@ -9,7 +9,13 @@
 </head>
 
 <body class="body-forms">
-    Error: {{ message }}
+    Search results:
     <br>
+    {% for result in results %}
+    {{ result[0] }}
+    <br>
+    {% endfor %}
+
+    <br><br>
     <button onclick="history.back()" class="error-btn">Go Back</button>
 </body>

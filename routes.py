@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect
-import users
+import forums, results, users
 
 @app.route("/")
 def index():
@@ -50,10 +50,53 @@ def register():
             return redirect("/forums")
         else:
             return render_template("error.html", message="Registration failed")
-
+        
 @app.route("/forums")
-def forums():
-    if users.user_id():
-        return render_template("forums.html")
+def show_forums():
+    forums_list = forums.get_forums()
+    user = users.get_username()
+
+    if users.get_user_id() > 0:
+        return render_template("forums.html", count=len(forums_list), forums=forums_list, username=user)
     else:
         return render_template("error.html", message="You have to login to view this content")
+
+@app.route("/new-forum")
+def new_forum():
+    return render_template("new-forum.html")
+
+@app.route("/create-forum", methods=["POST"])
+def create_forum():
+    users.check_csrf()
+
+    title = request.form["title"]
+
+    if len(title) < 1 or len(title) > 100:
+        return render_template("error.html", message="Title must contain 1-100 characters")
+
+    if forums.create_forum(title):
+        return redirect("/forums")
+    else:
+        return render_template("error.html", message="Failed to create forum")
+    
+@app.route("/remove", methods=["GET", "POST"])
+def remove():
+    users.require_role(2)
+
+    if request.method == "GET":
+        forums_list = forums.get_forums()
+        return render_template("remove.html", forums=forums_list)
+
+    if request.method == "POST":
+        users.check_csrf()
+
+        if "forum" in request.form:
+            forum = request.form["forum"]
+            forums.remove_forum(forum)
+
+        return redirect("/forums")
+
+@app.route("/result")
+def show_results():
+    results_list = results.get_results()
+    return render_template("results.html", results=results_list)

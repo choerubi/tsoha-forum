@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Writit 𖹭</title>
+   <link rel="stylesheet" type="text/css" href="/static/forums.css">
+</head>
+
+{% if session.user_id %}
+
+<body class="body-forms">
+    <form action="/remove" method="POST">
+        Which forum would you like to remove?
+        <br>
+        {% for forum in forums %}
+        <input type="radio" name="forum" value="{{ forum.id }}"> {{ forum[1] }}
+        <br>
+        {% endfor %}
+        <input type="submit" value="Remove" class="form-btn">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </form>
+</body>
+
+{% endif %}

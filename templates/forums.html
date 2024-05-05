@@ -4,12 +4,50 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Writit</title>
+   <title>Writit 𖹭</title>
    <link rel="stylesheet" type="text/css" href="/static/forums.css">
 </head>
 
-<body>
+<body class="body-main">
+    <header>
+        <h2 class="logo">Writit 𖹭</h2>
+        <nav class="nav-search">
+            <form action="/result" method="GET">
+                <span class="icon">
+                    <ion-icon name="search-circle"></ion-icon>
+                </span>
+                <input type="text" name="query" placeholder="Search Forum">
+                <input type="submit" value="Search" class="search-btn">
+            </form>
+        </nav>
+        <nav class="logout">
+            <a href="/logout" class="btnLogout-popup">Logout</a>
+        </nav>
+    </header>
 
+    <a href="/new-forum">New Forum</a>
+    <br>
+
+    Forums available: {{ count }}
+    <br><br>
+    <hr>
+    {% for forum in forums %}
+    <a href="/threads/{{ forum[0] }}">{{ forum[1] }}</a>
+    <p>
+    <b>Username:</b> {{ forum[2] }}
+    <p>
+    <b>Created:</b> {{ forum[3].strftime("%d-%m-%Y") }}
+    <br><br>
+    {% endfor %}
+
+    {% if session.user_role == 2 %}
+    
+    <hr>
+    <br>
+    <a href="/remove">Remove Forum</a>
+
+    {% endif %}
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
-</html>
