@@ -2,18 +2,16 @@
 
 Sovelluksessa näkyy keskustelualueita, joista jokaisella on tietty aihe. Alueilla on keskusteluketjuja, jotka muodostuvat viesteistä. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
-Sovelluksen ominaisuuksia:
+Sovelluksen ominaisuudet:
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
-- Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi lähetetyn viestin ajankohdan.
-- Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
-- Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
-- Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. Käyttäjä voi myös poistaa ketjun tai viestin.
-- Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana.
-- Ylläpitäjä voi lisätä ja poistaa keskustelualueita.
-- Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
+- Käyttäjä näkee sovelluksen pääsivulla listan keskustelualueista, alueen luoneen käyttäjän käyttäjänimen ja luomisen ajankohdan sekä luotujen alueiden määrän.
+- Käyttäjä voi siirtyä keskustelualueille, joissa käyttäjä näkee alueille luodut ketjut ja ketjuihin lähetetyt viestit. Käyttäjä näkee myös ketjujen ja viestien lähettäjien käyttäjänimet, luomisajat sekä ketjujen ja viestien määrän.
+- Käyttäjä voi luoda uusia keskustelualueita ja ketjuja, ja käyttäjä voi lähettää ketjuihin uusia viestejä.
+- Käyttäjä voi etsiä kaikki keskustelualueet, joiden osana on annettu sana.
+- Ylläpitäjä voi poistaa keskustelualueita.
 
-Kyseessä on ensimmäinen kurssilla valmiiksi annetuista esimerkeistä.
+Kyseessä on mukautettu versio ensimmäisestä kurssilla valmiiksi annetusta esimerkistä.
 
 ## Ohjeet sovelluksen testaamiseen
 
@@ -62,13 +60,3 @@ $ source venv/bin/activate
 ```
 (venv) $ flask run
 ```
-
-## Välipalautukset
-
-Välipalautus 2:
-
-Käyttäjä voi tarkastella sovelluksen kirjautumis- ja rekisteröintisivua, mutta ei pääse vielä luomaan tunnuksia tai kirjautumaan sisään.
-
-Välipalautus 3:
-
-Käyttäjä voi luoda tunnukset ja kirjautua sisään. Jos käyttäjä on kirjautuneena sisään, hänet ohjataan foorumisivulle.
