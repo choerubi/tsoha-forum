@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect
-import forums, results, threads, users
+import forums, messages, results, threads, users
 
 @app.route("/")
 def index():
@@ -50,7 +50,7 @@ def register():
             return redirect("/forums")
         else:
             return render_template("error.html", message="Registration failed")
-        
+
 @app.route("/forums")
 def show_forums():
     forums_list = forums.get_forums()
@@ -117,6 +117,44 @@ def create_thread():
     else:
         return render_template("error.html", message="Failed to create thread")
     
+@app.route("/messages")
+def show_messages():
+    messages_list = messages.get_messages()
+    user = users.get_username()
+
+    if users.get_user_id() > 0:
+        return render_template("messages.html", messages=messages_list, username=user)
+    else:
+        return render_template("error.html", message="You have to login to view this content")
+
+@app.route("/messages/<int:id>")
+def messages_in_thread(id):
+    thread_messages = messages.get_messages(id)
+    if users.get_user_id() > 0:
+        return render_template("messages.html", count=len(thread_messages), messages=thread_messages, thread_id=id)
+    else:
+        return render_template("error.html", message="You have to login to view this content")
+
+@app.route("/new-message/<int:id>")
+def new_message(id):
+    return render_template("new-message.html", thread_id=id)
+
+@app.route("/send-message", methods=["POST"])
+def send_message():
+    users.check_csrf()
+
+    content = request.form["content"]
+    thread_id = request.form["thread_id"]
+
+    if len(content) < 1 or len(content) > 5000:
+        return render_template("error.html", message="Message must contain 1-5000 characters")
+    
+    if messages.send_message(content, thread_id):
+        url = "/messages/" + str(thread_id)
+        return redirect(url)
+    else:
+        return render_template("error.html", message="Failed to send message")
+
 @app.route("/remove", methods=["GET", "POST"])
 def remove():
     users.require_role(2)

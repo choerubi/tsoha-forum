@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Writit 𖹭</title>
+   <link rel="stylesheet" type="text/css" href="/static/forums.css">
+</head>
+
+<header>
+    <h2 class="logo">Writit 𖹭</h2>
+</header>
+
+<body class="body-main">
+    <a href="/new-message/{{ thread_id }}">New Message</a>
+    <br>
+
+    Messages in this thread: {{ count }}
+    <br><br>
+    <hr>
+    {% for message in messages %}
+    <b>{{ message[2] }}</b>
+    <p>
+    <b>Username:</b> {{ message[3] }}
+    <p>
+    <b>Sent:</b> {{ message[4].strftime("%H:%M %d-%m-%Y") }}
+    <p>
+    ❤︎
+    <br><br>
+    {% endfor %}
+
+    <hr>
+    <br>
+    <a href="/forums">Back to Forums</a>
+</body>
