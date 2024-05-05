@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect
-import forums, results, users
+import forums, results, threads, users
 
 @app.route("/")
 def index():
@@ -78,6 +78,44 @@ def create_forum():
         return redirect("/forums")
     else:
         return render_template("error.html", message="Failed to create forum")
+    
+@app.route("/threads")
+def show_threads():
+    threads_list = threads.get_threads()
+    user = users.get_username()
+
+    if users.get_user_id() > 0:
+        return render_template("threads.html", threads=threads_list, username=user)
+    else:
+        return render_template("error.html", message="You have to login to view this content")
+
+@app.route("/threads/<int:id>")
+def threads_in_forum(id):
+    forum_threads = threads.get_threads(id)
+    if users.get_user_id() > 0:
+        return render_template("threads.html", count=len(forum_threads), threads=forum_threads, forum_id=id)
+    else:
+        return render_template("error.html", message="You have to login to view this content")
+
+@app.route("/new-thread/<int:id>")
+def new_thread(id):
+    return render_template("new-thread.html", forum_id=id)
+
+@app.route("/create-thread", methods=["POST"])
+def create_thread():
+    users.check_csrf()
+
+    title = request.form["title"]
+    forum_id = request.form["forum_id"]
+
+    if len(title) < 1 or len(title) > 100:
+        return render_template("error.html", message="Title must contain 1-100 characters")
+
+    if threads.create_thread(title, forum_id):
+        url = "/threads/" + str(forum_id)
+        return redirect(url)
+    else:
+        return render_template("error.html", message="Failed to create thread")
     
 @app.route("/remove", methods=["GET", "POST"])
 def remove():

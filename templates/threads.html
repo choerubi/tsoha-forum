@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Writit 𖹭</title>
+   <link rel="stylesheet" type="text/css" href="/static/forums.css">
+</head>
+
+<header>
+    <h2 class="logo">Writit 𖹭</h2>
+</header>
+
+<body class="body-main">
+    <a href="/new-thread/{{ forum_id }}">New Thread</a>
+    <br>
+
+    Threads in this forum: {{ count }}
+    <br><br>
+    <hr>
+    {% for thread in threads %}
+    <a href="/messages/{{ thread[0] }}">{{ thread[2] }}</a>
+    <p>
+    <b>Username:</b> {{ thread[3] }}
+    <p>
+    <b>Created:</b> {{ thread[4].strftime("%H:%M %d-%m-%Y") }}
+    <br><br>
+    {% endfor %}
+
+    <hr>
+    <br>
+    <a href="/forums">Back to Forums</a>
+</body>
